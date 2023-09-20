@@ -12,35 +12,38 @@ function listLength(){
 }
 
 function createListElement() {
-	// implement creates an element "li"
-	// implement makes text from input field the li text
-	// implement adds li to ul
-	// implement Reset text input field
+	var li = document.createElement("li");
+	li.appendChild(document.createTextNode(input.value));
+    ul.appendChild(li);
+	input.value = "";
+// START ADD DELETE BUTTON
+	var destroy = document.createElement("button");
+	destroy.appendChild(document.createTextNode("X"));
+	li.appendChild(destroy);
+// END ADD DELETE BUTTON
+// implement creates an element "li"
+// implement makes text from input field the li text
+// implement adds li to ul
+// implement Reset text input field
 
 
-	//START STRIKETHROUGH
-	// because it's in the function, it only adds it for new items
-	function crossOut() {
-		//implement me
-	}
-
-	li.addEventListener("click",crossOut);
-	//END STRIKETHROUGH
+		//START STRIKETHROUGH
+		// because it's in the function, it only adds it for new items
+		function crossOut() {
+			li.classList.toggle("done");}
+		li.addEventListener("click",crossOut);
+		//END STRIKETHROUGH
 
 
-	// START ADD DELETE BUTTON
-
-		//Use the implemented function from below here
-	
-	// END ADD DELETE BUTTON
 
 
-	//ADD CLASS DELETE (DISPLAY: NONE)
-	function deleteListItem(){
-		//Implement me
-	}
-	//END ADD CLASS DELETE
-}
+
+		//ADD CLASS DELETE (DISPLAY: NONE)
+		function deleteListItem(){
+			ul.removeChild(li);}
+		destroy.addEventListener("click",deleteListItem);}
+		//END ADD CLASS DELETE
+
 
 
 function addListAfterClick(){
@@ -55,9 +58,10 @@ function addListAfterKeypress(event) {
 		createListElement();
 	} 
 }
-
+document.addEventListener("DOMContentLoaded", function () {
 
 enterButton.addEventListener("click",addListAfterClick);
 
 input.addEventListener("keypress", addListAfterKeypress);
 
+});
